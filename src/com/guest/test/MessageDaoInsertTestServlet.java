@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.guest.dao.MessageDao;
+import com.guest.jdbc.ConnectionProvider;
 import com.guest.jdbc.JdbcUtil;
 import com.guest.model.Message;
 
@@ -37,11 +38,11 @@ public class MessageDaoInsertTestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:guestbook");
+			conn = ConnectionProvider.getConnection();
 			Message message = new Message();
-			message.setGuestName("홍길동");
-			message.setPassword("hong");
-			message.setMessage("홍길동 다녀감");
+			message.setGuestName("홍길동2");
+			message.setPassword("hong2");
+			message.setMessage("홍길동 다녀감2");
 
 			MessageDao dao = MessageDao.getInstance();
 			dao.insert(conn, message);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.guest.dao.MessageDao;
+import com.guest.jdbc.ConnectionProvider;
 import com.guest.jdbc.JdbcUtil;
 import com.guest.model.Message;
 
@@ -38,8 +39,8 @@ public class MessageDaoSelectTestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:apache:commons:dbcp:guestbook");
-			int messageId = 1;
+			conn = ConnectionProvider.getConnection();
+			int messageId = 2;
 
 			MessageDao dao = MessageDao.getInstance();
 			Message message = dao.select(conn, messageId);

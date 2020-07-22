@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.guest.jdbc.JdbcUtil;
 import com.guest.model.Message;
@@ -75,6 +78,44 @@ public class MessageDao {
 	}
 	
 	
+	public int selectCount(Connection conn) throws SQLException {
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT count(*) FROM "
+					+ "guestbook_message");
+			rs.next();
+			return rs.getInt(1);
+		} finally {
+			JdbcUtil.close(rs, stmt);
+		}
+	}
+	
+	public List<Message> selectList(Connection conn, int firstRow, int endRow) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("");
+			
+			pstmt.setInt(1, firstRow - 1);
+			pstmt.setInt(2, endRow - firstRow + 1);
+			rs = pstmt.executeQuery();
+			
+			List<Message> messageList = new ArrayList<Message>();
+			
+			while (rs.next()) {
+				messageList.add(makeMessageFromResultSet(rs));
+			}
+			
+			return messageList;
+			
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+	}
 }
 
 
