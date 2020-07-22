@@ -119,6 +119,20 @@ public class MessageDao {
 			JdbcUtil.close(rs, pstmt);
 		}
 	}
+	
+	public int delete(Connection conn, int messageId) throws SQLException {
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement("DELETE FROM "
+					+ " guestbook_message WHERE message_id=? ");
+			pstmt.setInt(1, messageId);
+			
+			return pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
 }
 
 
