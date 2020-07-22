@@ -14,13 +14,13 @@ public class MessageListView {
 	private int firstRow;
 	private int endRow;
 	public MessageListView(List<Message> messageList, int messageTotalCount, int currentPageNumber,
-			int messageCountPerPage, int firestRow, int endRow) {
+			int messageCountPerPage, int firstRow, int endRow) {
 		super();
 		this.messageList = messageList;
 		this.messageTotalCount = messageTotalCount;
 		this.currentPageNumber = currentPageNumber;
 		this.messageCountPerPage = messageCountPerPage;
-		this.firstRow = firestRow;
+		this.firstRow = firstRow;
 		this.endRow = endRow;
 		
 		calculatePageTotalCount();
@@ -62,7 +62,14 @@ public class MessageListView {
 		return messageTotalCount == 0;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "MessageListView [messageTotalCount=" + messageTotalCount + ", currentPageNumber=" + currentPageNumber
+				+ ", messageList=" + messageList + ", pageTotalCount=" + pageTotalCount + ", messageCountPerPage="
+				+ messageCountPerPage + ", firstRow=" + firstRow + ", endRow=" + endRow + "]";
+	}
+	
+	
 }
 
 
