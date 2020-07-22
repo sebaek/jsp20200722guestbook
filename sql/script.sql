@@ -8,3 +8,5 @@ CREATE TABLE guestbook_message (
     password varchar(10) not null,
     message text not null
 );
+
+select * from guestbook_message;

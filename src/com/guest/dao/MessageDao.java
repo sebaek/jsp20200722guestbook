@@ -98,7 +98,10 @@ public class MessageDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("");
+			pstmt = conn.prepareStatement("SELECT * FROM"
+					+ " guestbook_message "
+					+ " ORDER BY message_id "
+					+ " DESC LIMIT ?, ?");
 			
 			pstmt.setInt(1, firstRow - 1);
 			pstmt.setInt(2, endRow - firstRow + 1);

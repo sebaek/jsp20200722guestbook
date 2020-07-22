@@ -40,9 +40,9 @@ public class MessageDaoInsertTestServlet extends HttpServlet {
 		try {
 			conn = ConnectionProvider.getConnection();
 			Message message = new Message();
-			message.setGuestName("홍길동2");
-			message.setPassword("hong2");
-			message.setMessage("홍길동 다녀감2");
+			message.setGuestName("홍길동" + Math.floor(Math.random() * 100));
+			message.setPassword("hong");
+			message.setMessage("홍길동 다녀감2" + Math.random());
 
 			MessageDao dao = MessageDao.getInstance();
 			dao.insert(conn, message);
