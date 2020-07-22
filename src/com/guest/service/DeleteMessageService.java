@@ -36,12 +36,14 @@ public class DeleteMessageService {
 			}
 			messageDao.delete(conn, messageId);
 			conn.commit();
+			
+			return "삭제 성공";
 		} catch (Exception e) {
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(conn);
 		}
-		return "삭제 성공";
+		return "삭제 실패";
 	}
 }
