@@ -2,6 +2,7 @@ package com.guest.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.guest.jdbc.JdbcUtil;
@@ -40,6 +41,37 @@ public class MessageDao {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+	}
+	
+	public Message select(Connection conn, int messageId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM "
+					+ "guestbook_message WHERE message_id=?");
+			
+			pstmt.setInt(1, messageId);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				return makeMessageFromResultSet(rs);
+			} else {
+				return null;
+			}
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+	}
+
+	private Message makeMessageFromResultSet(ResultSet rs) throws SQLException {
+		Message message = new Message();
+		message.setId(rs.getInt("message_id"));
+		message.setGuestName(rs.getString("guest_name"));
+		message.setPassword(rs.getString("password"));
+		message.setMessage(rs.getString("message"));
+		
+		return message;
 	}
 	
 	

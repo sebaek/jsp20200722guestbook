@@ -1,10 +1,17 @@
 package com.guest.model;
 
 public class Message {
+
 	private int id;
 	private String guestName;
 	private String password;
 	private String message;
+	
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", guestName=" + guestName + ", password=" + password + ", message=" + message
+				+ "]";
+	}
 	
 	public int getId() {
 		return id;
