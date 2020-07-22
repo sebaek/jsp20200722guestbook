@@ -11,7 +11,7 @@ public class MessageListView {
 	private List<Message> messageList;
 	private int pageTotalCount;
 	private int messageCountPerPage;
-	private int firestRow;
+	private int firstRow;
 	private int endRow;
 	public MessageListView(List<Message> messageList, int messageTotalCount, int currentPageNumber,
 			int messageCountPerPage, int firestRow, int endRow) {
@@ -20,7 +20,7 @@ public class MessageListView {
 		this.messageTotalCount = messageTotalCount;
 		this.currentPageNumber = currentPageNumber;
 		this.messageCountPerPage = messageCountPerPage;
-		this.firestRow = firestRow;
+		this.firstRow = firestRow;
 		this.endRow = endRow;
 		
 		calculatePageTotalCount();
@@ -52,7 +52,7 @@ public class MessageListView {
 		return messageCountPerPage;
 	}
 	public int getFirestRow() {
-		return firestRow;
+		return firstRow;
 	}
 	public int getEndRow() {
 		return endRow;
