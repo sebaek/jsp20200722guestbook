@@ -31,7 +31,7 @@ public class DeleteMessageService {
 			if (message == null) {
 				return "메시지 없음";
 			}
-			if (message.matchPassword(password)) {
+			if (!message.matchPassword(password)) {
 				return "패스워드 불일치";
 			}
 			messageDao.delete(conn, messageId);
