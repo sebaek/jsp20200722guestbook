@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,14 +34,11 @@
 <body class="bg-light">
 	
 
-	<div>
-		${info }
-		<c:remove var="info" />
-	</div>
 
 
 
 	<div class="container my-3 shadow p-3" >
+		<my:alert />
 		<h1>방명록</h1>
 		<form action="write" method="post">
 			<div class="form-group">
