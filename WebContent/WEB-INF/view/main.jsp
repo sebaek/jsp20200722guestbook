@@ -16,8 +16,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="">
+<div>
+${info }
+<c:remove var="info"/>
+</div>
+
+
+
+<div>
+
+<form action="write" method="post">
+이름:<input type="text" name="name" /> <br />
+암호:<input type="password" name="password" /> <br />
+메시지: <textarea name="message" rows="3"></textarea>
+<br />
+<input type="submit" value="등록" />
 </form>
+
+</div>
 
 <hr />
 
