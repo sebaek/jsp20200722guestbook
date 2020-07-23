@@ -68,7 +68,7 @@ ${info }
 </div>
 
 <div class="delete-form">
-<form action="">
+<form action="delete" method="post">
 id: <input id="delete-input-id" type="text" name="id" value="" /> <br />
 암호: <input type="password" name="password"/> <br />
 <input type="submit" value="삭제" />
