@@ -39,21 +39,31 @@ public class WriteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		Message message = new Message();
 		
 		String name = request.getParameter("name");
 		String pw = request.getParameter("password");
 		String body = request.getParameter("message");
+
+		if (name == null || pw == null || body == null 
+				|| name.isEmpty() || pw.isEmpty() || body.isEmpty()) {
+			session.setAttribute("info", "이름, 암호, 메시지를 꼭 입력하세요.");
+		} else {
+			message.setGuestName(name);
+			message.setPassword(pw);
+			message.setMessage(body);
+			
+			WriteMessageService service = WriteMessageService.getInstance();
+			boolean success = service.write(message);
+			
+			if (success) {
+				session.setAttribute("info", "메시지가 등록되었습니다.");
+			} else {
+				session.setAttribute("info", "메시지 등록에 실패하였습니다.");
+			}
+		}
 		
-		message.setGuestName(name);
-		message.setPassword(pw);
-		message.setMessage(body);
-		
-		WriteMessageService service = WriteMessageService.getInstance();
-		service.write(message);
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("info", "메시지가 등록되었습니다.");
 		response.sendRedirect("main");
 	}
 

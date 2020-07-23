@@ -26,9 +26,9 @@ ${info }
 <div>
 
 <form action="write" method="post">
-이름:<input type="text" name="name" /> <br />
-암호:<input type="password" name="password" /> <br />
-메시지: <textarea name="message" rows="3"></textarea>
+이름:<input type="text" name="name" required="required"/> <br />
+암호:<input type="password" name="password" required="required"/> <br />
+메시지: <textarea name="message" rows="3" required="required"></textarea>
 <br />
 <input type="submit" value="등록" />
 </form>

@@ -17,7 +17,7 @@ public class WriteMessageService {
 	private WriteMessageService() {
 	}
 	
-	public void write(Message message) {
+	public boolean write(Message message) {
 		Connection conn = null;
 		
 		try {
@@ -26,9 +26,12 @@ public class WriteMessageService {
 			messageDao.insert(conn, message);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			JdbcUtil.close(conn);
 		}
+		
+		return true;
 		
 		
 	}
