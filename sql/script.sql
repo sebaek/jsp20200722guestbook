@@ -9,4 +9,6 @@ CREATE TABLE guestbook_message (
     message text not null
 );
 
-select * from guestbook_message;
+select * from guestbook_message order by message_id desc;
+
+

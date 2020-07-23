@@ -14,6 +14,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
+
+<script>
+$(function() {
+	$(".delete-form").hide();
+	$(".btn-delete").click(function() {
+		$(".delete-form").show();
+		var messageId = $(this).attr("data-message-id");
+		$("#delete-input-id").val(messageId);
+	});
+});
+</script>
 </head>
 <body>
 <div>
@@ -42,6 +53,7 @@ ${info }
 		<div class="border">
 			<h6>${message.id } : ${message.guestName }</h6>
 			<p>${message.message }</p>
+			<p><button data-message-id="${message.id }" class="btn btn-danger btn-delete">삭제하기</button></p>
 		</div>
 	
 	
@@ -53,6 +65,15 @@ ${info }
 		<a href="main?page=${i }">${i }</a>
 	</c:forEach>
 	
+</div>
+
+<div class="delete-form">
+<form action="">
+id: <input id="delete-input-id" type="text" name="id" value="" /> <br />
+암호: <input type="password" name="password"/> <br />
+<input type="submit" value="삭제" />
+</form>
+
 </div>
 
 </body>
